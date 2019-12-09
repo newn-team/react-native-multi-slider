@@ -55,6 +55,7 @@ export default class MultiSlider extends React.Component {
     snapped: PropTypes.bool,
     markerOffsetX: PropTypes.number,
     markerOffsetY: PropTypes.number,
+    containerPointerEvents: ViewPropTypes.pointerEvents,
   };
 
   static defaultProps = {
@@ -88,6 +89,7 @@ export default class MultiSlider extends React.Component {
     enabledTwo: true,
     allowOverlap: false,
     snapped: false,
+    containerPointerEvents: 'auto',
   };
 
   constructor(props) {
@@ -363,8 +365,8 @@ export default class MultiSlider extends React.Component {
     const markerContainerTwo = { top: markerOffsetY - 24, right: trackThreeLength + markerOffsetX - 24 };
 
     return (
-      <View style={[styles.container, this.props.containerStyle]}>
-        <View style={[styles.fullTrack, { width: sliderLength }]}>
+      <View style={[styles.container, this.props.containerStyle]} pointerEvents={this.props.containerPointerEvents}>
+        <View style={[styles.fullTrack, { width: sliderLength }]} pointerEvents={this.props.containerPointerEvents}>
           <View
             style={[
               styles.track,
@@ -372,6 +374,7 @@ export default class MultiSlider extends React.Component {
               trackOneStyle,
               { width: trackOneLength },
             ]}
+            pointerEvents={this.props.containerPointerEvents}
           />
           <View
             style={[
@@ -380,6 +383,7 @@ export default class MultiSlider extends React.Component {
               trackTwoStyle,
               { width: trackTwoLength },
             ]}
+            pointerEvents={this.props.containerPointerEvents}
           />
           {twoMarkers &&
           <View
@@ -389,6 +393,7 @@ export default class MultiSlider extends React.Component {
               trackThreeStyle,
               { width: trackThreeLength },
             ]}
+            pointerEvents={this.props.containerPointerEvents}
           />}
           <View
             style={[
@@ -397,6 +402,7 @@ export default class MultiSlider extends React.Component {
               this.props.markerContainerStyle,
               positionOne > sliderLength / 2 && styles.topMarkerContainer,
             ]}
+            pointerEvents={this.props.containerPointerEvents}
           >
             <View
               style={[styles.touch, touchStyle]}
